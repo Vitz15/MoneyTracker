@@ -1,52 +1,68 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import React from 'react';
-import {
-  HeaderSignUp,
-  Textinput,
-  BorderCircle,
-} from '../../components/molecules';
+import {Header, TextInput} from '../../components/molecules';
 import {Button, Gap} from '../../components/atoms';
+import {NullPhoto} from '../../assets/icon';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <HeaderSignUp text="Sign Up" />
-
+      <Header
+        text="Sign Up"
+        backButton={true}
+        onPress={() => navigation.goBack()}
+      />
       <View style={styles.contentWrapper}>
-        <View style={styles.centeredContent}>
-          <BorderCircle />
+        <View style={styles.profileContainer}>
+          <View style={styles.profileBorder}>
+            <TouchableOpacity>
+              <Image source={NullPhoto} style={styles.photo} />
+            </TouchableOpacity>
+          </View>
         </View>
-        <Textinput label="Full Name" placeholder="Type your full name" />
-        <Gap height={16} />
-        <Textinput
+        <TextInput label="Full Name" placeholder="Type your full name" />
+        <Gap height={15} />
+        <TextInput
           label="Email Address"
           placeholder="Type your email address"
         />
-        <Gap height={16} />
-        <Textinput label="Password" placeholder="Type your password" />
+        <Gap height={15} />
+        <TextInput label="Password" placeholder="Type your password" />
         <Gap height={24} />
-        <Button text="Continue" />
-        <Gap height={12} />
+        <Button text="Continue" onPress={() => navigation.navigate('Home')} />
       </View>
     </View>
   );
 };
 
+export default SignUp;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  contentWrapper: {
-    marginTop: 26,
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 24,
-    paddingTop: 26,
-  },
-  centeredContent: {
+  profileContainer: {
     alignItems: 'center',
+    marginTop: 24,
+  },
+  profileBorder: {
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: '#8D92A3',
+    height: 110,
+    width: 110,
+    borderRadius: 110 / 2,
     justifyContent: 'center',
-    marginBottom: 16,
+    alignItems: 'center',
+  },
+  contentWrapper: {
+    marginTop: 24,
+    backgroundColor: '#FFFFFF',
+    flex: 1,
+    paddingHorizontal: 24,
+  },
+  photo: {
+    height: 90,
+    width: 90,
   },
 });
-export default SignUp;

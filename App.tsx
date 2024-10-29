@@ -1,10 +1,52 @@
 import React from 'react';
-import splashScreen from './src/page/splashScreen';
-import Signin from './src/page/Signin';
+import SplashScreen from './src/page/SplashScreen';
+import SignIn from './src/page/SignIn';
 import SignUp from './src/page/SignUp';
+import Home from './src/page/Home';
+import CashonHand from './src/page/CashonHand';
+import CashonBank from './src/page/CashonBank';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  return <SignUp />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="CashonBank"
+          component={CashonBank}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="CashonHand"
+          component={CashonHand}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 export default App;
